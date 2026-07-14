@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Voucher - EduCore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .voucher-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .fee-voucher {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .voucher-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--primary-green);
+            padding-bottom: 1rem;
+        }
+        .voucher-header h1 {
+            color: var(--primary-green);
+            margin: 0;
+        }
+        .voucher-header p {
+            color: #666;
+            margin: 0.5rem 0 0 0;
+        }
+        .voucher-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .detail-item {
+            padding: 0.5rem 0;
+        }
+        .detail-item strong {
+            color: var(--primary-green);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .divider {
+            border-top: 2px dashed var(--primary-green);
+            margin: 2rem 0;
+        }
+        .fee-breakdown {
+            margin-bottom: 2rem;
+        }
+        .fee-breakdown h3 {
+            color: var(--primary-green);
+            margin-top: 0;
+        }
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .fee-table th {
+            background-color: var(--pale-green);
+            color: var(--primary-green);
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-green);
+        }
+        .fee-table td {
+            padding: 1rem 0.8rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .fee-table tr:last-child td {
+            border-bottom: none;
+        }
+        .summary-row {
+            display: grid;
+            grid-template-columns: 1fr 150px;
+            gap: 1rem;
+            padding: 1rem;
+            background-color: var(--pale-green);
+            margin-bottom: 0.5rem;
+            border-radius: 5px;
+        }
+        .summary-row.total {
+            background-color: var(--primary-green);
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        .summary-row.due {
+            background-color: #fff3cd;
+            border: 2px solid var(--warning);
+        }
+        .actions {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .btn-action {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-action:hover {
+            background-color: var(--secondary-green);
+            transform: translateY(-2px);
+        }
+        .btn-action.secondary {
+            background-color: var(--secondary-green);
+        }
+        .status-paid {
+            color: var(--success);
+            font-weight: bold;
+        }
+        .status-unpaid {
+            color: var(--danger);
+            font-weight: bold;
+        }
+        .status-partial {
+            color: var(--warning);
+            font-weight: bold;
+        }
+        @media print {
+            .actions { display: none; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="voucher-container">
+        <div class="fee-voucher">
+            <div class="voucher-header">
+                <h1>FEE VOUCHER</h1>
+                <p>Payment Receipt</p>
+            </div>
+            
+            <div class="voucher-details">
+                <div class="detail-item">
+                    <strong>Voucher No:</strong>
+                    <span id="voucherNo">FEE-2024-001</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Date:</strong>
+                    <span id="voucherDate">14-07-2024</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Student Name:</strong>
+                    <span id="studentName">Ali Ahmed</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Roll Number:</strong>
+                    <span id="rollNumber">001</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Class:</strong>
+                    <span id="className">10-A</span>
+                </div>
+                <div class="detail-item">
+                    <strong>Academic Year:</strong>
+                    <span id="academicYear">2024</span>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div class="fee-breakdown">
+                <h3>Fee Details</h3>
+                <table class="fee-table">
+                    <thead>
+                        <tr>
+                            <th>Fee Type</th>
+                            <th>Amount</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Monthly Tuition Fee</td>
+                            <td>Rs. 10,000</td>
+                            <td>05-07-2024</td>
+                        </tr>
+                        <tr>
+                            <td>Activity Fee</td>
+                            <td>Rs. 1,500</td>
+                            <td>05-07-2024</td>
+                        </tr>
+                        <tr>
+                            <td>Lab Fee</td>
+                            <td>Rs. 500</td>
+                            <td>05-07-2024</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <div class="summary-row">
+                    <strong>Total Amount:</strong>
+                    <strong id="totalAmount" style="text-align: right;">Rs. 12,000</strong>
+                </div>
+                <div class="summary-row">
+                    <strong>Amount Paid:</strong>
+                    <strong id="amountPaid" style="text-align: right;">Rs. 8,000</strong>
+                </div>
+                <div class="summary-row due">
+                    <strong>Amount Due:</strong>
+                    <strong id="amountDue" style="text-align: right;">Rs. 4,000</strong>
+                </div>
+                <div class="summary-row total">
+                    <strong>Status:</strong>
+                    <strong id="paymentStatus" style="text-align: right; color: white;">PARTIAL</strong>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div style="font-size: 0.9rem; color: #666; margin-bottom: 2rem;">
+                <p><strong>Note:</strong> Please submit the original voucher along with your payment at the accounts office.</p>
+                <p>Bank Details: School ABC | Account No: 12345678 | Bank: XYZ Bank</p>
+            </div>
+            
+            <div class="actions">
+                <button class="btn-action" onclick="window.print()">Print Voucher</button>
+                <button class="btn-action secondary" onclick="downloadFeeVoucherPDF()">Download PDF</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function downloadFeeVoucherPDF() {
+            const feeId = new URLSearchParams(window.location.search).get('fee_id');
+            const token = localStorage.getItem('token');
+            
+            if (!feeId || !token) {
+                alert('Invalid fee ID or token');
+                return;
+            }
+            
+            fetch(`/api/generate-fee-voucher/${feeId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `FeeVoucher_${feeId}.pdf`;
+                a.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>

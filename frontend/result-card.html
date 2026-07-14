@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Card - EduCore</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .result-card-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+        .result-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            color: #333;
+        }
+        .result-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--primary-green);
+            padding-bottom: 1rem;
+        }
+        .result-header h1 {
+            color: var(--primary-green);
+            margin: 0;
+        }
+        .student-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background-color: var(--pale-green);
+            border-radius: 8px;
+        }
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+        }
+        .info-item strong {
+            color: var(--primary-green);
+        }
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+        .results-table th {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .results-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+        .results-table tr:hover {
+            background-color: var(--pale-green);
+        }
+        .grade-a { color: var(--success); font-weight: bold; }
+        .grade-b { color: var(--info); font-weight: bold; }
+        .grade-c { color: var(--warning); font-weight: bold; }
+        .grade-d { color: var(--danger); font-weight: bold; }
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .summary-box {
+            background-color: var(--pale-green);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid var(--primary-green);
+        }
+        .summary-box h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--secondary-green);
+            font-size: 0.9rem;
+        }
+        .summary-box .value {
+            font-size: 1.8rem;
+            color: var(--primary-green);
+            font-weight: bold;
+        }
+        .btn-print {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+        .btn-print:hover {
+            background-color: var(--secondary-green);
+        }
+        @media print {
+            .btn-print { display: none; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-card-container">
+        <div class="result-card">
+            <div class="result-header">
+                <h1>RESULT CARD</h1>
+                <p>Academic Performance Report</p>
+            </div>
+            
+            <div class="student-info">
+                <div class="info-item">
+                    <strong>Student Name:</strong>
+                    <span id="studentName">Ali Ahmed</span>
+                </div>
+                <div class="info-item">
+                    <strong>Roll Number:</strong>
+                    <span id="rollNumber">001</span>
+                </div>
+                <div class="info-item">
+                    <strong>Class:</strong>
+                    <span id="className">10-A</span>
+                </div>
+                <div class="info-item">
+                    <strong>Academic Year:</strong>
+                    <span id="academicYear">2024</span>
+                </div>
+            </div>
+            
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Total Marks</th>
+                        <th>Percentage</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTableBody">
+                    <tr>
+                        <td>Mathematics</td>
+                        <td>85</td>
+                        <td>100</td>
+                        <td>85%</td>
+                        <td class="grade-a">A</td>
+                    </tr>
+                    <tr>
+                        <td>English</td>
+                        <td>78</td>
+                        <td>100</td>
+                        <td>78%</td>
+                        <td class="grade-b">B</td>
+                    </tr>
+                    <tr>
+                        <td>Science</td>
+                        <td>82</td>
+                        <td>100</td>
+                        <td>82%</td>
+                        <td class="grade-a">A</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="summary">
+                <div class="summary-box">
+                    <h3>Total Obtained</h3>
+                    <div class="value" id="totalObtained">245</div>
+                </div>
+                <div class="summary-box">
+                    <h3>Total Marks</h3>
+                    <div class="value" id="totalMarks">300</div>
+                </div>
+                <div class="summary-box">
+                    <h3>Percentage</h3>
+                    <div class="value" id="percentage">81.67%</div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-print" onclick="window.print()">Print Result Card</button>
+                <button class="btn-print" onclick="downloadResultCardPDF()" style="background-color: var(--secondary-green);">Download PDF</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function downloadResultCardPDF() {
+            // Get student ID from URL or localStorage
+            const studentId = new URLSearchParams(window.location.search).get('student_id');
+            const token = localStorage.getItem('token');
+            
+            if (!studentId || !token) {
+                alert('Invalid student ID or token');
+                return;
+            }
+            
+            // Download PDF from API
+            fetch(`/api/generate-result-card/${studentId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `ResultCard_${studentId}.pdf`;
+                a.click();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
