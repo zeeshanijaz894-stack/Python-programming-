@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduCore - School ERP System</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-section">
+                <i class="fas fa-school"></i>
+                <h1>EduCore</h1>
+                <p>Professional School ERP System</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter your password">
+                </div>
+                
+                <div class="remember-forgot">
+                    <label><input type="checkbox" name="remember"> Remember me</label>
+                    <a href="#forgot-password">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="btn-login">Login</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Don't have an account? <a href="#register">Register here</a></p>
+            </div>
+        </div>
+        
+        <div class="demo-login">
+            <h3>Demo Credentials</h3>
+            <p><strong>Admin:</strong> admin@school.com / password123</p>
+            <p><strong>Teacher:</strong> teacher@school.com / password123</p>
+            <p><strong>Student:</strong> student@school.com / password123</p>
+        </div>
+    </div>
+    
+    <script src="js/login.js"></script>
+</body>
+</html>
